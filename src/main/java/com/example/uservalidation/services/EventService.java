@@ -26,10 +26,11 @@ public class EventService {
     public Event removeUser(User user) {
         for (Event event : events) {
             if (event.getEventName().equals(user.getEventName())) {
-
-                for (User user1 : event.getUsers()) {
+                for (int i = 0; i < event.getUsers().size(); i++) {
+                    User user1 = event.getUsers().get(i);
                     if (user1.getEmail().equals(user.getEmail())) {
-                        event.removeUser(user1);
+                        event.getUsers().remove(i);
+                        break;
                     }
                 }
                 return event;
@@ -37,6 +38,7 @@ public class EventService {
         }
         return null;
     }
+
 
     public Event registerForEvent(User user) {
 
