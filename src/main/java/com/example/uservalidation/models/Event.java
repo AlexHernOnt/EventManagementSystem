@@ -13,6 +13,15 @@ public class Event {
 
     private Long id;
 
+    private List<User> users = new ArrayList<>();
+
+
+    public Event(String eventName) {
+        this.eventName = eventName;
+    }
+
+
+
     public Long getId() {
         return id;
     }
@@ -21,11 +30,8 @@ public class Event {
         this.id = id;
     }
 
-    private List<User> users = new ArrayList<>();
 
-    public Event(String eventName) {
-        this.eventName = eventName;
-    }
+
 
     public String getEventName() {
         return eventName;
@@ -41,5 +47,9 @@ public class Event {
 
     public void removeUser(User user) {
         users.remove(user);
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 }

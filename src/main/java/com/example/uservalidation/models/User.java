@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 public class User {
+
+    private static Long masterId = 0L;
     private Long id;
 
     @NotBlank(message = "Name must not be blank")
@@ -20,6 +22,13 @@ public class User {
 
     public User(Long id, String name, String email, String eventName) {
         this.id = id;
+        this.name = name;
+        this.email = email;
+        this.eventName = eventName;
+    }
+
+    public User(String name, String email, String eventName) {
+        this.id = masterId++;
         this.name = name;
         this.email = email;
         this.eventName = eventName;

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserService {
+public class EventService {
 
     private final List<Event> events = new ArrayList<>();
     private Long nextId = 1L;
@@ -23,6 +23,21 @@ public class UserService {
         return event;
     }
 
+    public Event removeUser(User user) {
+        for (Event event : events) {
+            if (event.getEventName().equals(user.getEventName())) {
+
+                for (User user1 : event.getUsers()) {
+                    if (user1.getEmail().equals(user.getEmail())) {
+                        event.removeUser(user1);
+                    }
+                }
+                return event;
+            }
+        }
+        return null;
+    }
+
     public Event registerForEvent(User user) {
 
         for (Event event : events) {
@@ -32,7 +47,7 @@ public class UserService {
             }
         }
 
-        // if it doesnt exist
+        // if it doesn't exist
 
         Event newEvent = new Event(user.getEventName());
         newEvent.setId(nextId++);
